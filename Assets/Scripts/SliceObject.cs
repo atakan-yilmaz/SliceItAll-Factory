@@ -8,6 +8,11 @@ public class SliceObject : MonoBehaviour
     public float exposionRadius;
     public bool gravity, kinematic;
 
+    private void Start()
+    {
+       
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("CanSlice"))
@@ -24,6 +29,8 @@ public class SliceObject : MonoBehaviour
                 Destroy(slicedObjDown, 2f);
                 slicedObjTop.GetComponent<Rigidbody>().useGravity = true;
                 slicedObjDown.GetComponent<Rigidbody>().useGravity = true;
+                slicedObjDown.GetComponent<Rigidbody>().isKinematic = false;
+                slicedObjDown.GetComponent<Rigidbody>().isKinematic = false;
             }
            
         }

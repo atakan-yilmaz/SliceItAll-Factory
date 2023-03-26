@@ -23,6 +23,7 @@ public class KnifeController : MonoBehaviour
 
         groundLevel = transform.position.y;
         
+        
 
     }
 
@@ -34,7 +35,7 @@ public class KnifeController : MonoBehaviour
             transform.DOMove(transform.position + Vector3.up + Vector3.forward*moveSpeed, 0.4f);
 
             //Rotation
-            transform.DORotate(new Vector3(360, 0, 0), 0.6f, RotateMode.WorldAxisAdd);
+            transform.DORotate(new Vector3(360, 0, 0), 0.8f, RotateMode.WorldAxisAdd);
 
             velocity = Vector3.zero;
         }
