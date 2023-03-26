@@ -13,12 +13,15 @@ public class SliceObject : MonoBehaviour
         if (other.gameObject.CompareTag("CanSlice"))
         {
             SlicedHull sliceObj = Slice(other.gameObject, materialSlicedSlice);
-            GameObject slicedObjTop = sliceObj.CreateUpperHull(other.gameObject, materialSlicedSlice);
-            GameObject slicedObjDown = sliceObj.CreateLowerHull(other.gameObject, materialSlicedSlice);
-            Destroy(other.gameObject);
-
-            AddComponent(slicedObjTop);
-            AddComponent(slicedObjDown);
+            if (sliceObj !=null)
+            {
+                GameObject slicedObjTop = sliceObj.CreateUpperHull(other.gameObject, materialSlicedSlice);
+                GameObject slicedObjDown = sliceObj.CreateLowerHull(other.gameObject, materialSlicedSlice);
+                Destroy(other.gameObject);
+                AddComponent(slicedObjTop);
+                AddComponent(slicedObjDown);
+            }
+           
         }
     }
 

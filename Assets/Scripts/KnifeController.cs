@@ -1,47 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class KnifeController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float rotationSpeed = 50f;
+    public float moveSpeed = 5f;  
     public float jumpForce = 5f;
+    public float smoothFactor = 1.0f;
 
     private Rigidbody rb;
+
+    public float gravity = -9.81f; // yer çekimi kuvveti
+    public float fallSpeed = 1f; // düþüþ hýzý
+    public float damping = 0.5f; // kamera damping deðeri
+
+    private Vector3 velocity; // düþüþ hýzýný tutacak deðiþken
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
+       
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //high
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
-            //Mouse angle
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            transform.DOMove(transform.position + Vector3.up + Vector3.forward*moveSpeed, 0.4f);
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                Vector3 targetDir = hit.point - transform.position;
-                targetDir.y = 0f; // y ekseni etrafýnda dönmemesi için sýfýrla
-                targetDir.x = 0f; // x ekseni etrafýnda dönmemesi için sýfýrla
-                Quaternion targetRotation = Quaternion.LookRotation(targetDir);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            }
+            //Rotation
+            transform.DORotate(new Vector3(360, 0, 0), 1f, RotateMode.WorldAxisAdd);
+
+            velocity = Vector3.zero;
         }
-    }
+        else
+        {
+            //calculating gravitational force
+            velocity.y += gravity * fallSpeed * Time.deltaTime;
 
-    void FixedUpdate()
-    {
-        // Knife forward moving
-        Vector3 moveDirection = transform.forward * moveSpeed * Time.deltaTime;
-        moveDirection.y = 0;
-        rb.MovePosition(transform.position + moveDirection);
+            //gravitational force
+            transform.position += velocity;
+
+            // update camera position
+            Vector3 cameraPosition = Camera.main.transform.position;
+            cameraPosition.y = transform.position.y + damping;
+            Camera.main.transform.position = cameraPosition;
+        }
+
     }
+   
+
+
+   
 }
