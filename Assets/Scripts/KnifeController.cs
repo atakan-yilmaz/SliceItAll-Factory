@@ -41,16 +41,7 @@ public class KnifeController : MonoBehaviour
         }
         else
         {
-            ////calculating gravitational force
-            //velocity.y += gravity * fallSpeed * Time.deltaTime;
-
-            ////gravitational force
-            //transform.position += velocity;
-
-            //// update camera position
-            //Vector3 cameraPosition = Camera.main.transform.position;
-            //cameraPosition.y = transform.position.y + damping;
-            //Camera.main.transform.position = cameraPosition;
+            
 
             if (transform.position.y > groundLevel)
             {
