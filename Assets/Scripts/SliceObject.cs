@@ -1,18 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
+using EzySlice;
 using UnityEngine;
 
 public class SliceObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Material materialSlicedSlice;
+    public float explosionForce;
+    public float exposionRadius;
+    public bool gravity, kinematic;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("CanSlice"))
+        {
+            SlicedHull sliceObj = Slice(other.gameObject, materialSlicedSlice);
+            GameObject slicedObjTop = sliceObj.CreateUpperHull(other.gameObject, materialSlicedSlice);
+            GameObject slicedObjDown = sliceObj.CreateLowerHull(other.gameObject, materialSlicedSlice);
+            Destroy(other.gameObject);
+
+            AddComponent(slicedObjTop);
+            AddComponent(slicedObjDown);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private SlicedHull Slice(GameObject obj, Material mat)
     {
-        
+        return obj.Slice(transform.position, transform.up, mat);
+    }
+
+    void AddComponent (GameObject obj)
+    {
+        obj.AddComponent<BoxCollider>();
+        var rigidbody = obj.AddComponent<Rigidbody>();
+        rigidbody.useGravity = gravity;
+        rigidbody.isKinematic = kinematic;
+        rigidbody.AddExplosionForce(explosionForce, obj.transform.position, exposionRadius);
+        obj.tag = "CanSlice";
     }
 }
