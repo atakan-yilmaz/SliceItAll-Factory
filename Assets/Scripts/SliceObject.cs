@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SliceObject : MonoBehaviour
 {
-    public Material materialSlicedSlice;
+    public Material[] materialSlicedSlice;
     public float explosionForce;
     public float exposionRadius;
     public bool gravity, kinematic;
@@ -12,14 +12,18 @@ public class SliceObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("CanSlice"))
         {
-            SlicedHull sliceObj = Slice(other.gameObject, materialSlicedSlice);
+            SlicedHull sliceObj = Slice(other.gameObject, materialSlicedSlice[Random.Range(0, materialSlicedSlice.Length)]);
             if (sliceObj !=null)
             {
-                GameObject slicedObjTop = sliceObj.CreateUpperHull(other.gameObject, materialSlicedSlice);
-                GameObject slicedObjDown = sliceObj.CreateLowerHull(other.gameObject, materialSlicedSlice);
+                GameObject slicedObjTop = sliceObj.CreateUpperHull(other.gameObject, materialSlicedSlice[Random.Range(0, materialSlicedSlice.Length)]);
+                GameObject slicedObjDown = sliceObj.CreateLowerHull(other.gameObject, materialSlicedSlice[Random.Range(0, materialSlicedSlice.Length)]);
                 Destroy(other.gameObject);
                 AddComponent(slicedObjTop);
                 AddComponent(slicedObjDown);
+                Destroy(slicedObjTop, 2f);
+                Destroy(slicedObjDown, 2f);
+                slicedObjTop.GetComponent<Rigidbody>().useGravity = true;
+                slicedObjDown.GetComponent<Rigidbody>().useGravity = true;
             }
            
         }

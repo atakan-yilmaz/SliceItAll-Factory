@@ -16,11 +16,14 @@ public class KnifeController : MonoBehaviour
 
     private Vector3 velocity; // düþüþ hýzýný tutacak deðiþken
 
+    private float groundLevel; // objenin yere olan mesafesini hesaplamak için
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        groundLevel = transform.position.y;
         
-       
+
     }
 
     void Update()
@@ -31,22 +34,36 @@ public class KnifeController : MonoBehaviour
             transform.DOMove(transform.position + Vector3.up + Vector3.forward*moveSpeed, 0.4f);
 
             //Rotation
-            transform.DORotate(new Vector3(360, 0, 0), 1f, RotateMode.WorldAxisAdd);
+            transform.DORotate(new Vector3(360, 0, 0), 0.6f, RotateMode.WorldAxisAdd);
 
             velocity = Vector3.zero;
         }
         else
         {
-            //calculating gravitational force
-            velocity.y += gravity * fallSpeed * Time.deltaTime;
+            ////calculating gravitational force
+            //velocity.y += gravity * fallSpeed * Time.deltaTime;
 
-            //gravitational force
-            transform.position += velocity;
+            ////gravitational force
+            //transform.position += velocity;
 
-            // update camera position
-            Vector3 cameraPosition = Camera.main.transform.position;
-            cameraPosition.y = transform.position.y + damping;
-            Camera.main.transform.position = cameraPosition;
+            //// update camera position
+            //Vector3 cameraPosition = Camera.main.transform.position;
+            //cameraPosition.y = transform.position.y + damping;
+            //Camera.main.transform.position = cameraPosition;
+
+            if (transform.position.y > groundLevel)
+            {
+                // yerçekimi kuvvetinin etkisi altýnda objeyi hareket ettir
+                velocity.y += gravity * fallSpeed * Time.deltaTime;
+
+                //gravitational force
+                transform.position += velocity;
+
+                // update camera position
+                Vector3 cameraPosition = Camera.main.transform.position;
+                cameraPosition.y = transform.position.y + damping;
+                Camera.main.transform.position = cameraPosition;
+            }
         }
 
     }
