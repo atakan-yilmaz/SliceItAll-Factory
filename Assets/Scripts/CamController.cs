@@ -4,30 +4,19 @@ using UnityEngine;
 
 public class CamController : MonoBehaviour
 {
-    public Transform target; // Takip edilecek hedef
-    public float smoothSpeed = 0.125f; // Hedef takibi için pürüzsüzleþtirme deðeri
-    public Vector3 offset; // Kameranýn hedefe göre konumu
+    public Transform target; 
+    public float smoothSpeed = 0.125f; 
+    public Vector3 offset; 
 
     private void FixedUpdate()
     {
-        Vector3 desiredPosition = target.position + offset; // Hedefin konumuna offset deðeri eklenir
-        desiredPosition.y = transform.position.y; // Kameranýn y pozisyonu, baþlangýçta belirtilen y pozisyonunda sabit kalýr
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed); // Kameranýn konumunu pürüzsüz bir þekilde güncellemek için Lerp fonksiyonu kullanýlýr
-        transform.position = smoothedPosition; // Kameranýn konumu güncellenir
+        Vector3 desiredPosition = target.position + offset;
+        desiredPosition.y = transform.position.y;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed); 
+        transform.position = smoothedPosition; 
     }
 
 
 
-    //public GameObject Knife;
-    //Vector3 distance;
-
-    //private void Start()
-    //{
-    //    distance = transform.position - Knife.transform.position;
-    //}
-
-    //private void Update()
-    //{
-    //    transform.position = Knife.transform.position + distance;
-    //}
+   
 }

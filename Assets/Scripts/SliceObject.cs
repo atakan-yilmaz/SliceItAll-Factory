@@ -8,6 +8,8 @@ public class SliceObject : MonoBehaviour
     public float exposionRadius;
     public bool gravity, kinematic;
 
+    public GameObject knifeHitEffect; 
+
     private void Start()
     {
        
@@ -32,6 +34,10 @@ public class SliceObject : MonoBehaviour
                 slicedObjDown.GetComponent<Rigidbody>().useGravity = true;
                 slicedObjDown.GetComponent<Rigidbody>().isKinematic = false;
                 slicedObjDown.GetComponent<Rigidbody>().isKinematic = false;
+                FindObjectOfType<TextManager>().score++;
+
+                GameObject effect = Instantiate(knifeHitEffect, other.transform.position, Quaternion.identity);
+                Destroy(effect, 1f);
             }
           
            
