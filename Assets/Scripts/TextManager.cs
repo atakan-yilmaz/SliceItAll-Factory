@@ -17,7 +17,7 @@ public class TextManager : MonoBehaviour
     void Start()
     {
 
-        money = PlayerPrefs.GetInt("score", 0);
+        //money = PlayerPrefs.GetInt("score", 0);
 
         switch (SceneManager.GetActiveScene().buildIndex)
         {
@@ -36,7 +36,7 @@ public class TextManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    
     void Update()
     {      
         scoreText.text = "$ " + money.ToString();
@@ -46,8 +46,8 @@ public class TextManager : MonoBehaviour
     void OnDestroy()
     {
         
-        PlayerPrefs.SetInt("score", money);
-        PlayerPrefs.Save();
+        //PlayerPrefs.SetInt("score", money);
+        //PlayerPrefs.Save();
     }
 
 }

@@ -17,7 +17,7 @@ public class PanelManager : MonoBehaviour
         {
             startPanel.SetActive(true);
         }
-
+        Cursor.visible = false;
 
     }
 

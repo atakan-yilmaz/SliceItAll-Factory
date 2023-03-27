@@ -55,31 +55,31 @@ public class KnifeController : MonoBehaviour
                 {
                     if (hitCollider.gameObject.CompareTag("x2"))
                     {
-                        Debug.Log("Deðdi x2");
+                        
                         moveSpeed = 0; 
                         scoreManager.money *= 2;
                         gravity = 0;
                         FindObjectOfType<PanelManager>().isPlay = false;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
-                        gameObject.GetComponent<MeshCollider>().enabled = false;
+                        gameObject.GetComponent<MeshRenderer>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("x3"))
                     {
-                        Debug.Log("Deðdi x3");
+                        
                         moveSpeed = 0;
                         FindObjectOfType<PanelManager>().isPlay = false;
                         scoreManager.money *= 3;
                         gravity = 0;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
-                        gameObject.GetComponent<MeshCollider>().enabled = false;
+                        gameObject.GetComponent<MeshRenderer>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("x4"))
                     {
-                        Debug.Log("Deðdi x4");
+                       
                         moveSpeed = 0;
                         FindObjectOfType<PanelManager>().isPlay = false;
                         scoreManager.money *= 4;
@@ -91,7 +91,7 @@ public class KnifeController : MonoBehaviour
                     }
                     else if (hitCollider.gameObject.CompareTag("x6"))
                     {
-                        Debug.Log("Deðdi x6");
+                        
                         moveSpeed = 0;
                         FindObjectOfType<PanelManager>().isPlay = false;
                         scoreManager.money *= 6;
@@ -103,7 +103,7 @@ public class KnifeController : MonoBehaviour
                     }
                     else if (hitCollider.gameObject.CompareTag("x10"))
                     {
-                        Debug.Log("Deðdi x10");
+                       
                         moveSpeed = 0;
                         FindObjectOfType<PanelManager>().isPlay = false;
                         scoreManager.money *= 10;
@@ -115,7 +115,7 @@ public class KnifeController : MonoBehaviour
                     }
                     else if (hitCollider.gameObject.CompareTag("x50"))
                     {
-                        Debug.Log("Deðdi x50");
+                        
                         moveSpeed = 0;
                         FindObjectOfType<PanelManager>().isPlay = false;
                         scoreManager.money *= 50;
@@ -127,7 +127,7 @@ public class KnifeController : MonoBehaviour
                     }
                     else if (hitCollider.gameObject.CompareTag("x1"))
                     {
-                        Debug.Log("Deðdi x1");
+                        
                         moveSpeed = 0;
                         scoreManager.money *= 1;
                         FindObjectOfType<PanelManager>().isPlay = false;
