@@ -123,6 +123,12 @@ public class KnifeController : MonoBehaviour
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         break;
                     }
+                    else if (hitCollider.gameObject.CompareTag("Floor"))
+                    {
+                        Destroy(gameObject);
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                        break;
+                    }
                 }
 
             }
@@ -155,14 +161,7 @@ public class KnifeController : MonoBehaviour
 
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Floor")
-        {
-            Destroy(gameObject);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-    }
+    
 }
 
 
