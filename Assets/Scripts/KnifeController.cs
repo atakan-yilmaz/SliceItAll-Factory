@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 public class KnifeController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -152,7 +153,14 @@ public class KnifeController : MonoBehaviour
                 }
             }
 
-
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Floor")
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
