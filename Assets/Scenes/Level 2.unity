@@ -3360,6 +3360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1772163707}
   panelScoreText: {fileID: 218616878}
+  levelText: {fileID: 2026936006}
   score: 0
 --- !u!1 &735730502
 GameObject:
