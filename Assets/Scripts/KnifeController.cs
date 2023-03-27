@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class KnifeController : MonoBehaviour
 {
-    public float moveSpeed = 5f;  
+    public float moveSpeed = 5f;
     public float jumpForce = 5f;
     public float smoothFactor = 1.0f;
 
@@ -21,46 +21,113 @@ public class KnifeController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        groundLevel = transform.position.y;
-        
-        
+        gravity = 0;
+
+        if (FindObjectOfType<PanelManager>().isPlay == true)
+        {
+            groundLevel = 0f;
+        }
 
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (FindObjectOfType<PanelManager>().isPlay == true)
         {
-
-            transform.DOMove(transform.position + Vector3.up + Vector3.forward*moveSpeed, 0.4f);
-
-            //Rotation
-            transform.DORotate(new Vector3(360, 0, 0), 0.8f, RotateMode.WorldAxisAdd);
-
-            velocity = Vector3.zero;
-        }
-        else
-        {
-            
-
-            if (transform.position.y > groundLevel)
+            if (Input.GetMouseButtonDown(0))
             {
-                // yerçekimi kuvvetinin etkisi altýnda objeyi hareket ettir
-                velocity.y += gravity * fallSpeed * Time.deltaTime;
+                transform.DOMove(transform.position + Vector3.up + Vector3.forward * moveSpeed, 0.4f);
 
-                //gravitational force
-                transform.position += velocity;
+                //Rotation
+                transform.DORotate(new Vector3(360, 0, 0), 0.4f, RotateMode.WorldAxisAdd);
 
-                // update camera position
-                Vector3 cameraPosition = Camera.main.transform.position;
-                cameraPosition.y = transform.position.y + damping;
-                Camera.main.transform.position = cameraPosition;
+                velocity = Vector3.zero;
+                gravity = -9.81f;
+            }
+            else
+            {
+
+                if (transform.position.y > groundLevel)
+                {
+                    if (transform.position.y > groundLevel && transform.position.y <= groundLevel + 0.1f)
+                    {
+                        // Karakter x2 tagli objeye dokunduðunda hýzýný sýfýrlayarak düþme hareketini durdur
+                        velocity = Vector3.zero;
+                    }
+                    else
+                    {
+                        velocity.y += gravity * fallSpeed * Time.deltaTime;
+                    }
+
+                  
+
+                    //gravitational force
+                    transform.position += velocity;
+
+                    // update camera position
+                    Vector3 cameraPosition = Camera.main.transform.position;
+                    cameraPosition.y = transform.position.y + damping;
+                    Camera.main.transform.position = cameraPosition;
+                }
             }
         }
-
     }
-   
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "x2")
+        {
+            Debug.Log("Deðdi x2");
+            // x2 tagine sahip objeye çarpýldý
+            moveSpeed = 0; // karakterin ileri hareketini durdur
+            FindObjectOfType<PanelManager>().isPlay = false;
+            gravity = 0; // karakterin düþüþ hýzýný sýfýrla
+        }
+        else if (other.gameObject.tag == "x3")
+        {
+            Debug.Log("Deðdi x3");
+            moveSpeed = 0;
+            FindObjectOfType<PanelManager>().isPlay = false;
+            gravity = 0;
+        }
+        else if (other.gameObject.tag == "x4")
+        {
+            Debug.Log("Deðdi x4");
+            moveSpeed = 0;
+            FindObjectOfType<PanelManager>().isPlay = false;
+            gravity = 0;
+        }
+        else if (other.gameObject.tag == "x6")
+        {
+            Debug.Log("Deðdi x6");
+            moveSpeed = 0;
+            FindObjectOfType<PanelManager>().isPlay = false;
+            gravity = 0;
+        }
+        else if (other.gameObject.tag == "x10")
+        {
+            Debug.Log("Deðdi x10");
+            moveSpeed = 0;
+            FindObjectOfType<PanelManager>().isPlay = false;
+            gravity = 0;
+        }
+        else if (other.gameObject.tag == "x50")
+        {
+            Debug.Log("Deðdi x50");
+            moveSpeed = 0;
+            FindObjectOfType<PanelManager>().isPlay = false;
+            gravity = 0;
+        }
+        else if (other.gameObject.tag == "x1")
+        {
+            Debug.Log("Deðdi x1");
+            moveSpeed = 0;
+            FindObjectOfType<PanelManager>().isPlay = false;
+            gravity = 0;
+        }
+    }
 
 
-   
+
+
 }

@@ -18,6 +18,7 @@ public class SliceObject : MonoBehaviour
         if (other.gameObject.CompareTag("CanSlice"))
         {
             SlicedHull sliceObj = Slice(other.gameObject, materialSlicedSlice[Random.Range(0, materialSlicedSlice.Length)]);
+            
             if (sliceObj !=null)
             {
                 GameObject slicedObjTop = sliceObj.CreateUpperHull(other.gameObject, materialSlicedSlice[Random.Range(0, materialSlicedSlice.Length)]);
@@ -26,12 +27,13 @@ public class SliceObject : MonoBehaviour
                 AddComponent(slicedObjTop);
                 AddComponent(slicedObjDown);
                 Destroy(slicedObjTop, 2f);
-                Destroy(slicedObjDown, 2f);
+                Destroy(slicedObjDown, 1f);
                 slicedObjTop.GetComponent<Rigidbody>().useGravity = true;
                 slicedObjDown.GetComponent<Rigidbody>().useGravity = true;
                 slicedObjDown.GetComponent<Rigidbody>().isKinematic = false;
                 slicedObjDown.GetComponent<Rigidbody>().isKinematic = false;
             }
+          
            
         }
     }
@@ -49,5 +51,6 @@ public class SliceObject : MonoBehaviour
         rigidbody.isKinematic = kinematic;
         rigidbody.AddExplosionForce(explosionForce, obj.transform.position, exposionRadius);
         obj.tag = "CanSlice";
+        obj.tag = "CanSliceCircle";
     }
 }
