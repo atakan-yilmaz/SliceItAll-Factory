@@ -62,6 +62,7 @@ public class KnifeController : MonoBehaviour
                         FindObjectOfType<PanelManager>().isPlay = false;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
+                        gameObject.GetComponent<MeshCollider>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("x3"))
@@ -73,6 +74,7 @@ public class KnifeController : MonoBehaviour
                         gravity = 0;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
+                        gameObject.GetComponent<MeshCollider>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("x4"))
@@ -84,6 +86,7 @@ public class KnifeController : MonoBehaviour
                         gravity = 0;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
+                        gameObject.GetComponent<MeshRenderer>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("x6"))
@@ -95,6 +98,7 @@ public class KnifeController : MonoBehaviour
                         gravity = 0;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
+                        gameObject.GetComponent<MeshRenderer>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("x10"))
@@ -106,6 +110,7 @@ public class KnifeController : MonoBehaviour
                         gravity = 0;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
+                        gameObject.GetComponent<MeshRenderer>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("x50"))
@@ -117,6 +122,7 @@ public class KnifeController : MonoBehaviour
                         gravity = 0;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
+                        gameObject.GetComponent<MeshRenderer>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("x1"))
@@ -128,12 +134,14 @@ public class KnifeController : MonoBehaviour
                         gravity = 0;
                         FindObjectOfType<PanelManager>().finishPanel.SetActive(true);
                         StartCoroutine(ChangeColor(hitCollider.gameObject));
+                        gameObject.GetComponent<MeshRenderer>().enabled = false;
                         break;
                     }
                     else if (hitCollider.gameObject.CompareTag("Floor"))
                     {
                         Destroy(gameObject);
                         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                        gameObject.GetComponent<MeshRenderer>().enabled = false;
                         break;
                     }
                 }
