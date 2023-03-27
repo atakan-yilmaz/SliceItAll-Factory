@@ -7,17 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class TextManager : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText; // Text nesnenizin referansý
-    public TextMeshProUGUI panelScoreText; // Text nesnenizin referansý
-    public TextMeshProUGUI levelText; // Text nesnenizin referansý
+    public TextMeshProUGUI scoreText; 
+    public TextMeshProUGUI panelScoreText; 
+    public TextMeshProUGUI levelText; 
 
+    public int money = 0; 
 
-
-    public int score = 0; // Skor deðeri
-
-    // Start is called before the first frame update
+   
     void Start()
     {
+
+        money = PlayerPrefs.GetInt("score", 0);
+
         switch (SceneManager.GetActiveScene().buildIndex)
         {
             case 0:
@@ -37,14 +38,16 @@ public class TextManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-       
-
-        scoreText.text = "$ " + score.ToString();
-        //panelScoreText.text = scoreText.text;
-        panelScoreText.text = "$ " + score.ToString();
-       
+    {      
+        scoreText.text = "$ " + money.ToString();
+        panelScoreText.text = "$ " + money.ToString();   
     }
 
-    
+    void OnDestroy()
+    {
+        
+        PlayerPrefs.SetInt("score", money);
+        PlayerPrefs.Save();
+    }
+
 }

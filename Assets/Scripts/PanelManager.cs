@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
-    public GameObject startPanel; // Baþlangýç paneli
-    public GameObject finishPanel; // Baþlangýç paneli
+    public GameObject startPanel;
+    public GameObject finishPanel; 
 
     public bool isPlay = false;
 
@@ -17,11 +17,11 @@ public class PanelManager : MonoBehaviour
         {
             startPanel.SetActive(true);
         }
-       
-       
+
+
     }
 
-    public void StartGame() 
+    public void StartGame()
     {
         startPanel.SetActive(false);
         isPlay = true;
@@ -31,6 +31,13 @@ public class PanelManager : MonoBehaviour
     {
         finishPanel.SetActive(false);
         int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(activeSceneIndex + 1);
+        int nextSceneIndex = activeSceneIndex + 1;
+
+        if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0;
+        }
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 }

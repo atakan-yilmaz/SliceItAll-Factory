@@ -8,20 +8,15 @@ public class SliceObject : MonoBehaviour
     public float exposionRadius;
     public bool gravity, kinematic;
 
-    public GameObject knifeHitEffect; 
-
-    private void Start()
-    {
-       
-    }
+    public GameObject scoreIcon;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("CanSlice"))
         {
             SlicedHull sliceObj = Slice(other.gameObject, materialSlicedSlice[Random.Range(0, materialSlicedSlice.Length)]);
-            
-            if (sliceObj !=null)
+
+            if (sliceObj != null)
             {
                 GameObject slicedObjTop = sliceObj.CreateUpperHull(other.gameObject, materialSlicedSlice[Random.Range(0, materialSlicedSlice.Length)]);
                 GameObject slicedObjDown = sliceObj.CreateLowerHull(other.gameObject, materialSlicedSlice[Random.Range(0, materialSlicedSlice.Length)]);
@@ -34,13 +29,11 @@ public class SliceObject : MonoBehaviour
                 slicedObjDown.GetComponent<Rigidbody>().useGravity = true;
                 slicedObjDown.GetComponent<Rigidbody>().isKinematic = false;
                 slicedObjDown.GetComponent<Rigidbody>().isKinematic = false;
-                FindObjectOfType<TextManager>().score++;
-
-                GameObject effect = Instantiate(knifeHitEffect, other.transform.position, Quaternion.identity);
+                FindObjectOfType<TextManager>().money++;
+                GameObject effect = Instantiate(scoreIcon, other.transform.position, Quaternion.identity);
                 Destroy(effect, 1f);
             }
-          
-           
+
         }
     }
 
@@ -49,7 +42,7 @@ public class SliceObject : MonoBehaviour
         return obj.Slice(transform.position, transform.up, mat);
     }
 
-    void AddComponent (GameObject obj)
+    void AddComponent(GameObject obj)
     {
         obj.AddComponent<BoxCollider>();
         var rigidbody = obj.AddComponent<Rigidbody>();

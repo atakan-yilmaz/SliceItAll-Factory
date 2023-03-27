@@ -3361,7 +3361,7 @@ MonoBehaviour:
   scoreText: {fileID: 1772163707}
   panelScoreText: {fileID: 218616878}
   levelText: {fileID: 2026936006}
-  score: 0
+  money: 0
 --- !u!1 &735730502
 GameObject:
   m_ObjectHideFlags: 0
@@ -11213,6 +11213,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 7908927266321968090, guid: 8cd2d9c2f9aeaf04ca7db3bdf440ead6, type: 3}
+      propertyPath: scoreIcon
+      value: 
+      objectReference: {fileID: 8381334711577163388, guid: fa259300809e7634d8c22fa2cf5da147, type: 3}
     - target: {fileID: 7908927266321968090, guid: 8cd2d9c2f9aeaf04ca7db3bdf440ead6, type: 3}
       propertyPath: explosionForce
       value: 500
